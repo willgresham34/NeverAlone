@@ -1,0 +1,20 @@
+{
+  "name": "neveralone",
+  "version": "1.0.0",
+  "description": "Social Media platform to help people with Mental Health issues.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willgresham34/NeverAlone.git"
+  },
+  "author": "Will Gresham, Tom Lazore, Justin Odom, and Mark Selyuzhitskiy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willgresham34/NeverAlone/issues"
+  },
+  "homepage": "https://github.com/willgresham34/NeverAlone#readme"
+}
