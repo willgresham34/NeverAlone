@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Quote of the Day</h4>
+      <p class="bg-dark text-light">{{{Quote}}}</p>
+      <form role="form">
+        <div class="form-group">
+          <label for="userPost"> Make a Post </label>
+          <textarea id="userPost" name="userPost" cols="44"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">Post</button>
+      </form>
+    </div>
+    {{#each posts as |post|}}
+      <div class="col-md-7">
+        <h2>{{post_username}}</h2>
+        <p>{{post_content}}</p>
+        <p>
+          <textarea id="userComment" name="userComment"></textarea>
+          <button class="btn bg-dark" type="submit">Add Comment</button>
+        </p>
+      </div>
+    {{/each}}
+    <div class="col-md-2">
+      <h4>Recent Friends</h4>
+      <ul class="list-unstyled">
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
