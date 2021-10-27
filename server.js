@@ -4,6 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers');
 const nodemail = require('nodemailer');
+const routes = require('./controllers')
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -32,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('./controllers/'));
+app.use(routes);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
