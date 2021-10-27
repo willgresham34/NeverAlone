@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 const router = require('express').Router();
 
 router.get('/', async (req,res) => {
@@ -17,3 +20,4 @@ router.get('/signup', async (req,res) => {
 });
 
 module.exports = router;
+>>>>>>> 8e931c57fbd70efaa345a83299cb0e647d9abe65
