@@ -25,6 +25,7 @@ router.get('/sign-up', async (req,res) => {
     }
 });
 
+// get login page -> if logged in, go to home page
 router.get('/login', async (req,res) => {
    try {
      if (req.session.loggedIn) {
@@ -37,6 +38,7 @@ router.get('/login', async (req,res) => {
    } 
 });
 
+// get profile page when logged in
 router.get('/profile', withAuth, async (req,res) => {
     try {
         res.render('profile', {logged_in: req.session.loggedIn});
@@ -45,10 +47,13 @@ router.get('/profile', withAuth, async (req,res) => {
     }
 })
 
+// get home page when logged in
 router.get('/homepage', withAuth, async (req,res) => {
     try {
         const postData = await Post.findAll({
-            include: [User],
+            include: [{model: User },
+                      { model: Comments}
+            ],
           });
       
           const posts = postData.map((post) => post.get({ plain: true }));
