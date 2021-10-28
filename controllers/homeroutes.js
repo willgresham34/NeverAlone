@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Post, Comments } = require('../models/');
 const withAuth = require('../utils/auth');
-
+const quoteList = require('../db/quotes.json');
 
 router.get('/', async (req,res) => {
     try {
@@ -55,7 +55,13 @@ router.get('/homepage', async (req,res) => {
           });
       
           const posts = postData.map((post) => post.get({ plain: true }));
-        res.render('homepage');
+        let randomIndex = Math.floor(Math.random() * quoteList.length);
+        let randomQuote = quoteList[randomIndex]
+
+
+        res.render('homepage', {
+            randomQuote
+        });
     } catch(err) {
         res.status(500).json(err);
     }
