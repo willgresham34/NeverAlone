@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 const router = require('express').Router();
 
 router.get('/', async (req,res) => {
@@ -19,5 +16,11 @@ router.get('/signup', async (req,res) => {
     }
 });
 
+router.get('/homepage', async (req,res) => {
+    try {
+        res.render('homepage');
+    } catch(err) {
+        res.status(500).json(err);
+    }
+})
 module.exports = router;
->>>>>>> 8e931c57fbd70efaa345a83299cb0e647d9abe65
