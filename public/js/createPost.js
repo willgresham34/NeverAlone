@@ -3,10 +3,11 @@ const createPost = async (event) => {
     alert("works");
 
     const postContent = document.querySelector('#userPost').value.trim();
+    console.log("Post content: ", postContent);
 
     if(postContent){
         try{
-            const response = await fetch('/api/post/',{
+            const response = await fetch('/api/post/homepage',{
                 method: 'POST',
                 body: JSON.stringify({ 
                     postContent
