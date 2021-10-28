@@ -3,26 +3,23 @@ const { User, Post, Comments } = require('../models/');
 const withAuth = require('../utils/auth');
 const quoteList = require('../db/quotes.json');
 
-router.get('/', async (req,res) => {
+// gets home page if logged in
+router.get('/', withAuth, async (req,res) => {
     try {
-        if(req.session.loggedIn) {
-            res.redirect('/homepage');
-            return;
-        }
-
-        res.render('login');
+        
+        res.redirect('/homepage');
     } catch(err) {
         res.status(500).json(err);
     }
 });
 
-
+// get sign up page -> if logged in, go to home page
 router.get('/sign-up', async (req,res) => {
     try {
         if(req.session.loggedIn){
             res.redirect('/homepage');
         }
-        res.render('signup');
+        res.render('signup', {logged_in: req.session.loggedIn});
     }catch (err) {
         res.status(500).json(err);
     }
@@ -34,21 +31,21 @@ router.get('/login', async (req,res) => {
         res.redirect('/homepage');
         return;
         }
-     res.render('login');
+     res.render('login', {logged_in: req.session.loggedIn});
    }catch (err) {
         res.status(500).json(err);
    } 
 });
 
-router.get('/profile', async (req,res) => {
+router.get('/profile', withAuth, async (req,res) => {
     try {
-        res.render('profile');
+        res.render('profile', {logged_in: req.session.loggedIn});
     } catch(err) {
         res.status(500).json(err);
     }
 })
 
-router.get('/homepage', async (req,res) => {
+router.get('/homepage', withAuth, async (req,res) => {
     try {
         const postData = await Post.findAll({
             include: [User],
@@ -60,7 +57,9 @@ router.get('/homepage', async (req,res) => {
 
 
         res.render('homepage', {
-            randomQuote
+            randomQuote,
+            posts,
+            logged_in: req.session.loggedIn
         });
     } catch(err) {
         res.status(500).json(err);
