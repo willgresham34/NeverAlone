@@ -11,13 +11,23 @@ router.get('/', async (req,res) => {
     }
 });
 
-router.get('/signup', async (req,res) => {
-    try {
-        res.render('signup');
-    } catch(err) {
-        res.status(500).json(err);
-    }
-});
+router.get('/login', (req,res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/homepage');
+        return;
+      }
+    
+      res.render('login');
+    });
+
+router.get('/signup', (req,res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/homepage');
+        return;
+      }
+    
+      res.render('signup');
+    });
 
 router.get('/profile', async (req,res) => {
     try {
