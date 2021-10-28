@@ -16,11 +16,11 @@ Post.init(
             allowNull: false,
         },
         mood: {
-            type: DataTypes.VARCHAR(75),
+            type: DataTypes.STRING,
             allowNull: false,
         },
         content: {
-            type: DataTypes.VARCHAR(300),
+            type: DataTypes.STRING,
             allowNull: false,
         },
         user_id: {
