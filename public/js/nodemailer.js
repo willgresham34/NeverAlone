@@ -34,3 +34,5 @@ transporter.sendMail(options, function (err, info) {
   }
   console.log("Sent: " + info.response);
 });
+
+module.exports = registerEmail;
