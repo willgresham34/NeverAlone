@@ -5,29 +5,40 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req,res) => {
     try {
-        res.render('login')
+        if(req.session.loggedIn) {
+            res.redirect('/homepage');
+            return;
+        }
+
+        res.render('login');
     } catch(err) {
         res.status(500).json(err);
     }
 });
 
-router.get('/login', (req,res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/homepage');
-        return;
-      }
-    
-      res.render('login');
-    });
 
-router.get('/signup', (req,res) => {
-    if (req.session.loggedIn) {
+router.get('/sign-up', async (req,res) => {
+    try {
+        if(req.session.loggedIn){
+            res.redirect('/homepage');
+        }
+        res.render('signup');
+    }catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/login', async (req,res) => {
+   try {
+     if (req.session.loggedIn) {
         res.redirect('/homepage');
         return;
-      }
-    
-      res.render('signup');
-    });
+        }
+     res.render('login');
+   }catch (err) {
+        res.status(500).json(err);
+   } 
+});
 
 router.get('/profile', async (req,res) => {
     try {
@@ -48,5 +59,6 @@ router.get('/homepage', async (req,res) => {
     } catch(err) {
         res.status(500).json(err);
     }
-})
+});
+
 module.exports = router;
