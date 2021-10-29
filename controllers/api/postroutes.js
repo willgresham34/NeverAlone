@@ -8,7 +8,7 @@ router.post('/homepage', async (req,res) => {
     try{
         const newPost = await Post.create({
             content: req.body.content,
-            userId: req.session.userId
+            user_id: req.session.userId
         });
         console.log("newpost ",newPost)
         res.json(newPost);
