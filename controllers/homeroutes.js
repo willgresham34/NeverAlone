@@ -65,13 +65,13 @@ router.get('/homepage', async (req,res) => {
           });
       
         const posts = postData.map((post) => post.get({ plain: true }));
-        // let randomIndex = Math.floor(Math.random() * quoteList.length);
-        // let randomQuote = quoteList[randomIndex]
+        let randomIndex = Math.floor(Math.random() * quoteList.length);
+        let randomQuote = quoteList[randomIndex];
 
 
         res.render('homepage', {
-            posts
-            // randomQuote,
+            posts,
+            randomQuote,
             // loggedIn: req.session.loggedIn
         });
     } catch(err) {
