@@ -7,7 +7,7 @@ const createPost = async (event) => {
     
     if(content){
         try{
-            alert("up to fetch works" + content);
+            // alert("up to fetch works" + content);
 
             const response = await fetch('/api/post/homepage',{
                 method: 'POST',
@@ -17,7 +17,7 @@ const createPost = async (event) => {
                 headers: { 'Content-Type': 'application/json' },
             });
 
-            alert("fetch done");
+            // alert("fetch done");
             if(response.ok){
                 // alert("post worked");
                 document.location.replace('/homepage');
