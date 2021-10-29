@@ -1,16 +1,16 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-5 d-flex flex-column">
+    <div class="col-5 d-flex flex-column border border-dark mt-3">
       <img
         alt="Bootstrap Image Preview"
         src="https://www.kindpng.com/picc/m/285-2855863_a-festival-celebrating-tractors-round-profile-picture-placeholder.png"
         class="rounded-circle align-self-center mt-5 w-50 h-50"
       />
       <h3 class="align-self-center m-2">
-        {{username}}
-
+        {{first_name}} {{last_name}}
       </h3>
-      <textarea class="text-center align-self-center m-2" cols="75">
+      <small class="align-self-center"> @{{username}} </small>
+      <textarea class=" align-self-center m-2" cols="50">
         {{user_bio}}
       </textarea>
       <button
@@ -20,8 +20,8 @@
         Save Profile
       </button>
     </div>
-    <div class="col-md-7">
-      <h2 class="mt-5">My Posts ...</h2>
+    <div class="col-7 border border-dark mt-3">
+      <h2 class=" ml-4">My Posts ...</h2>
       {{#each posts as |post|}}
         <p class="rounded border border-secondary p-2">
           {{post_content}}
