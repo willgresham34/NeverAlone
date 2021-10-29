@@ -32,12 +32,23 @@ User.init(
         isEmail: true,
       },
     },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8],
+      },
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [8],
       },
+    },
+    user_bio: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
