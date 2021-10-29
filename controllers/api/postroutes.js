@@ -2,17 +2,19 @@ const router = require ('express').Router();
 const{ Post, User } = require('../../models');
 // const withAuth = require('../../utils/auth');
 
-router.post('/homepage', async (req, res) => {
+// Creates new post
+router.post('/homepage', async (req,res) => {
+    // alert("before try");
     try{
+        // alert("fetch works");
         const newPost = await Post.create({
-            content: req.body.content         
+            content: req.body.content
         });
-
-        console.log("Post Content: ", {newPost});
-        res.json(newPost); 
+        console.log("newpost ",newPost)
+        res.json(newPost);
     }
     catch(err){
-        console.log(err);
+        console.error(err);
         res.status(500).json(err);
     }
 });

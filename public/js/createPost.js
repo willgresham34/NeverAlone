@@ -7,7 +7,7 @@ const createPost = async (event) => {
     
     if(content){
         try{
-            alert("up to fetch works");
+            alert("up to fetch works" + content);
 
             const response = await fetch('/api/post/homepage',{
                 method: 'POST',
