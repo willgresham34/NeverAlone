@@ -1,20 +1,25 @@
 const createPost = async (event) => {
     event.preventDefault();
-    alert("works");
+    alert("button works");
 
-    const postContent = document.querySelector('#userPost').value.trim();
-    console.log("Post content: ", postContent);
-
-    if(postContent){
+    const content = document.querySelector('#new-post').value.trim();
+    alert("Content: " + content);
+    
+    if(content){
         try{
+            alert("up to fetch works");
+
             const response = await fetch('/api/post/homepage',{
                 method: 'POST',
                 body: JSON.stringify({ 
-                    postContent
+                    content
                 }),
                 headers: { 'Content-Type': 'application/json' },
             });
+
+            alert("fetch done");
             if(response.ok){
+                alert("post worked");
                 document.location.replace('/homepage');
              }
             else{
