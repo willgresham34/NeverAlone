@@ -46,10 +46,9 @@ User.init(
         len: [8],
       },
     },
-    user_bio: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+    bio: {
+      type: DataTypes.STRING
+    }
   },
   {
     hooks: {
