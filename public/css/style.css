@@ -1,3 +1,8 @@
 .signup {
   width: 300px;
 }
+
+.homepagePosts{
+  height:150px;
+  overflow-y: scroll;
+}
