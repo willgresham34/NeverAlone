@@ -13,34 +13,58 @@
           <textarea id="userPost" class="form-control" rows="5" name="userPost"></textarea>
           <button type="submit" id="new-post-btn" class="btn btn-dark mt-2">Post</button>
         </div>
-      </form>
+      <div>
     </div>
   </div>
 
-  <div class=" col-7 mx-1 mt-3">
-    {{#each posts as |post|}}
-      <form class=" mt-2">
-        <h2 class="align-self-center m-2">{{post_username}}</h2>
-        <p class="align-self-center m-2">{{post_content}}</p>
-        <textarea class="align-self-center rounded m-2" id="userComment" name="userComment" cols="40"></textarea>
-        <button class="align-self-center btn bg-dark m-2 text-white" type="submit">Add Comment</button>
-      </form>
-    {{/each}}
+
+
+  {{!-- Create a post --}}
+  <div>
+    <form class="text-center">
+      <div class="form-group">
+        <label for="new-post"> Create a Post </label>
+        <textarea id="new-post" placeholder="How are you feeling?" class="form-control text-center" rows="5" name="userPost"></textarea>
+        <button type="submit" id="new-post-btn" class="btn btn-dark">Post</button>
+      </div>
+    </div>
+
+
+  {{!-- Shows each posts on homepage --}}
+  {{#each posts as |post|}}    
+    <div class="post">
+      <article class="card">
+        <div class="card-header flex-row justify-space-between bg-primary text-light text-center">
+          <div>
+            Posted by
+          </div>
+        </div>
+        <div class="card-body bg-dark text-light text-center">
+          {{content}}
+        </div>
+      </article>
+    </div>  
+  {{/each}}
+
+
+
+    <div class="p-2 mt-3">
+      <h4>Recent Friends</h4>
+      <ul class="list-unstyled">
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>
+        <li class="list-item">{{username}}</li>   
+        <li class="list-item">{{username}}</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="p-2 mt-3">
-    <h4>Recent Friends</h4>
-    <ul class="list-unstyled">
-      <li class="list-item">{{username}}</li>
-      <li class="list-item">{{username}}</li>
-      <li class="list-item">{{username}}</li>
-      <li class="list-item">{{username}}</li>
-      <li class="list-item">{{username}}</li>
-      <li class="list-item">{{username}}</li>
-      <li class="list-item">{{username}}</li>   
-      <li class="list-item">{{username}}</li>
-    </ul>
-  </div>
 </div>
+
+
 
 <script src="/js/createPost.js"></script>
