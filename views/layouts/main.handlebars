@@ -16,20 +16,21 @@
 
   </head>
   <body>
+    
     <header class="container-fluid">
-      <div class="row">
-        <div class="col-md-12 bg-dark">
-          <div class="page-header bg-dark d-flex justify-content-center">
-            <h1 class="text-white">Never Alone</h1>
-            {{#if logged_in}}
-              <p class="align-self-flex-end">
-                <a href="/profile">My Profile</a>
-                <a href="/logout">Logout<a/>
-              </p>
-            {{/if}}
-          </div>
+      <div class="row bg-dark d-flex text-center">
+        <div class=" col-12 bg-dark d-flex justify-content-center">
+            <h1 class="text-white text-center align-self-center">Never Alone</h1>   
         </div>
-      </div>
+        {{#if loggedIn}}
+        <div class="ml-auto mt-0">
+             <a class="text-white p-2" href="/profile">My Profile</a>       
+             <a class="text-white p-2" href="/login">Logout<a/>
+        </div> 
+         {{/if}} 
+        </div>
+    </header>
+   
       <main>
         <div>
           {{{body}}}
@@ -46,7 +47,6 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"
       ></script>
-    </header>
   </body>
 </html>
 

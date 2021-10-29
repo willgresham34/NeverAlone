@@ -13,30 +13,26 @@
           <textarea id="userPost" class="form-control" rows="5" name="userPost"></textarea>
           <button type="submit" id="new-post-btn" class="btn btn-dark mt-2">Post</button>
         </div>
-      <div>
-    </div>
-  </div>
 
-
-
-  {{!-- Create a post --}}
-  <div>
+    {{!-- Create a post --}}
     <form class="text-center">
       <div class="form-group">
         <label for="new-post"> Create a Post </label>
         <textarea id="new-post" placeholder="How are you feeling?" class="form-control text-center" rows="5" name="userPost"></textarea>
         <button type="submit" id="new-post-btn" class="btn btn-dark">Post</button>
       </div>
-    </div>
+      </form>
+  </div>
 
 
   {{!-- Shows each posts on homepage --}}
+  <div class="d-flex flex-column"> 
   {{#each posts as |post|}}    
-    <div class="post">
+    <div class="post y-3">
       <article class="card">
-        <div class="card-header bg-primary text-light text-center">
+        <div class="card-header flex-row justify-space-between bg-primary text-light text-center">
           <div>
-            Posted by {{User.username}}
+            Posted by
           </div>
         </div>
         <div class="card-body bg-dark text-light text-center">
@@ -45,6 +41,7 @@
       </article>
     </div>  
   {{/each}}
+  </div>
 
 
 
@@ -64,7 +61,6 @@
   </div>
 
 </div>
-
 
 
 <script src="/js/createPost.js"></script>
