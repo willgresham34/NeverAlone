@@ -56,25 +56,30 @@ router.get("/profile", withAuth, async (req, res) => {
 
 // get home page when logged in
 
-router.get("/homepage", withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findAll({
-      include: [{ model: User }],
-    });
+
+router.get('/homepage', async (req,res) => {
+    try {
+        const postData = await Post.findAll({
+            include: [{ model: User }]
+          });
+      
+        const posts = postData.map((post) => post.get({ plain: true }));
+        let randomIndex = Math.floor(Math.random() * quoteList.length);
+        let randomQuote = quoteList[randomIndex];
 
     const posts = postData.map((post) => post.get({ plain: true }));
     // let randomIndex = Math.floor(Math.random() * quoteList.length);
     // let randomQuote = quoteList[randomIndex]
     console.log("Posts", posts);
 
-    res.render("homepage", {
-      posts,
-      // randomQuote,
-      loggedIn: req.session.loggedIn,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+        res.render('homepage', {
+            posts,
+            randomQuote,
+            // loggedIn: req.session.loggedIn
+        });
+    } catch(err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
