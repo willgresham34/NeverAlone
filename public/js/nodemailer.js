@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-// require('dotenv').config();
+// require("dotenv").config();
 
 //Transporter set what email its coming from
 const transporter = nodemailer.createTransport({
@@ -11,12 +11,10 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-var mailList = ["willgresham34@gmail.com", "jeodom17@gmail.com"];
-
 //options is where the email is going to and its subject line
-const options = {
+const mail = {
   from: "never-alone-cares@outlook.com",
-  to: mailList, //insert the users email with a variables
+  to: userEmail.value,
   subject: "Thank you for registering",
   text: "Thank You for Registering!",
   html: `<h2>Thank You for Registering!</h2>
@@ -27,7 +25,7 @@ const options = {
    <h3> Never Alone ♥ </h3>`,
 };
 
-transporter.sendMail(options, function (err, info) {
+transporter.sendMail(mail, function (err, info) {
   if (err) {
     console.log(err);
     return;
@@ -35,4 +33,4 @@ transporter.sendMail(options, function (err, info) {
   console.log("Sent: " + info.response);
 });
 
-module.exports = registerEmail;
+module.exports = { registerEmail };
