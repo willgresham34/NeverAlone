@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comments } = require('../models/');
-const withAuth = require('../utils/auth');
+const {withAuth} = require('../utils/auth');
 
 // quotes.json contains and array of quotes - used to display a quote at random
 const quoteList = require('../db/quotes.json');
@@ -47,7 +47,7 @@ router.get('/login', async (req,res) => {
 
 
 // get profile page when logged in
-router.get('/profile', withAuth, async (req,res) => {
+router.get('/profile', {withAuth}, async (req,res) => {
     try {
         res.render('profile', {logged_in: req.session.loggedIn});
     } catch(err) {
