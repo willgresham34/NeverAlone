@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+  res.render("login");
 });
 
 // get sign up page -> if logged in, go to home page
