@@ -21,6 +21,7 @@ router.get("/", async (req, res) => {
 });
 
 // get sign up page -> if logged in, go to home page
+
 router.get("/sign-up", async (req, res) => {
   try {
     if (req.session.loggedIn) {
@@ -33,6 +34,7 @@ router.get("/sign-up", async (req, res) => {
 });
 
 // get login page -> if logged in, go to home page
+
 router.get("/login", async (req, res) => {
   try {
     if (req.session.loggedIn) {
@@ -46,18 +48,18 @@ router.get("/login", async (req, res) => {
 });
 
 // get profile page when logged in
-router.get("/profile", withAuth, async (req, res) => {
-  try {
-    res.render("profile", { logged_in: req.session.loggedIn });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+router.get('/profile', withAuth, async (req,res) => {
+    try {
+        res.render('profile', {loggedIn: req.session.loggedIn});
+    } catch(err) {
+        res.status(500).json(err);
+    }
+})
+
 
 // get home page when logged in
 
-
-router.get('/homepage', async (req,res) => {
+router.get('/homepage', withAuth, async (req,res) => {
     try {
         const postData = await Post.findAll({
             include: [{ model: User }]
@@ -65,21 +67,25 @@ router.get('/homepage', async (req,res) => {
       
         const posts = postData.map((post) => post.get({ plain: true }));
         let randomIndex = Math.floor(Math.random() * quoteList.length);
-        let randomQuote = quoteList[randomIndex];
-
-    const posts = postData.map((post) => post.get({ plain: true }));
-    // let randomIndex = Math.floor(Math.random() * quoteList.length);
-    // let randomQuote = quoteList[randomIndex]
-    console.log("Posts", posts);
+        let randomQuote = quoteList[randomIndex]
+        console.log("Posts", posts);
 
         res.render('homepage', {
             posts,
             randomQuote,
-            // loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn
         });
     } catch(err) {
         res.status(500).json(err);
     }
+    res.render("homepage", {
+      posts,
+      // randomQuote,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
