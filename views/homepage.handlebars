@@ -1,11 +1,3 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3">
-      <h4>Quote of the Day... </h4>
-      <p id="quote" class="border border-dark rounded p-2">{{randomQuote.quote}}</p>
-    </div>
-  </div>
-</div>
 
 <div>
   <form class="text-center">
@@ -14,32 +6,32 @@
       <textarea id="new-post" placeholder="How are you feeling?" class="form-control text-center" rows="5" name="userPost"></textarea>
       <button type="submit" id="new-post-btn" class="btn btn-dark">Post</button>
     </div>
-  </form>
-</div>
+  </div>
 
-<div>
-  {{#each posts as |post|}}
-    <form class="col-md-7 d-flex flex-column p-4">
-      <h2 class="align-self-center m-2">{{post_username}}</h2>
-      <p class="align-self-center m-2">{{post_content}}</p>
-      <textarea class="align-self-center rounded m-2" id="userComment" name="userComment" cols="40"></textarea>
-      <button class="align-self-center btn bg-dark m-2 text-white" type="submit">Add Comment</button>
-    </form>
-  {{/each}}
-</div>
+  <div class=" col-7 mx-1 mt-3">
+    {{#each posts as |post|}}
+      <form class=" mt-2">
+        <h2 class="align-self-center m-2">{{post_username}}</h2>
+        <p class="align-self-center m-2">{{post_content}}</p>
+        <textarea class="align-self-center rounded m-2" id="userComment" name="userComment" cols="40"></textarea>
+        <button class="align-self-center btn bg-dark m-2 text-white" type="submit">Add Comment</button>
+      </form>
+    {{/each}}
+  </div>
 
-<div class="col-md-2">
-  <h4>Recent Friends</h4>
-  <ul class="list-unstyled">
-    <li class="list-item">{{username}}</li>
-    <li class="list-item">{{username}}</li>
-    <li class="list-item">{{username}}</li>
-    <li class="list-item">{{username}}</li>
-    <li class="list-item">{{username}}</li>
-    <li class="list-item">{{username}}</li>
-    <li class="list-item">{{username}}</li>
-    <li class="list-item">{{username}}</li>
-  </ul>
+  <div class="p-2 mt-3">
+    <h4>Recent Friends</h4>
+    <ul class="list-unstyled">
+      <li class="list-item">{{username}}</li>
+      <li class="list-item">{{username}}</li>
+      <li class="list-item">{{username}}</li>
+      <li class="list-item">{{username}}</li>
+      <li class="list-item">{{username}}</li>
+      <li class="list-item">{{username}}</li>
+      <li class="list-item">{{username}}</li>   
+      <li class="list-item">{{username}}</li>
+    </ul>
+  </div>
 </div>
 
 <script src="/js/createPost.js"></script>
