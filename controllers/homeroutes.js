@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comments } = require('../models/');
-const {withAuth} = require('../utils/auth');
+const withAuth = require('../utils/auth');
 
 // quotes.json contains and array of quotes - used to display a quote at random
 const quoteList = require('../db/quotes.json');
@@ -24,7 +24,7 @@ router.get('/sign-up', async (req,res) => {
         if(req.session.loggedIn){
             res.redirect('/homepage');
         }
-        res.render('signup', {logged_in: req.session.loggedIn});
+        res.render('signup', {loggedIn: req.session.loggedIn});
     }catch (err) {
         res.status(500).json(err);
     }
@@ -37,7 +37,7 @@ router.get('/login', async (req,res) => {
         res.redirect('/homepage');
         return;
         }
-     res.render('login', {logged_in: req.session.loggedIn});
+     res.render('login', {loggedIn: req.session.loggedIn});
    }catch (err) {
         res.status(500).json(err);
    } 
@@ -47,7 +47,7 @@ router.get('/login', async (req,res) => {
 // get profile page when logged in
 router.get('/profile', withAuth, async (req,res) => {
     try {
-        res.render('profile', {logged_in: req.session.loggedIn});
+        res.render('profile', {loggedIn: req.session.loggedIn});
     } catch(err) {
         res.status(500).json(err);
     }
@@ -72,7 +72,8 @@ router.get('/homepage', withAuth, async (req,res) => {
         res.render('homepage', {
             randomQuote,
             posts,
-            logged_in: req.session.loggedIn
+            comments,
+            loggedIn: req.session.loggedIn
         });
     } catch(err) {
         res.status(500).json(err);
