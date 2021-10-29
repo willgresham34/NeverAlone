@@ -1,16 +1,19 @@
 const router = require("express").Router();
 const { User, Post, Comments } = require("../models/");
-const withAuth = require("../utils/auth");
+const { withAuth } = require("../utils/auth");
 
 // quotes.json contains and array of quotes - used to display a quote at random
 const quoteList = require("../db/quotes.json");
 
 //_____________-- ROUTES --_____________________
 
-// gets home page if logged in
-router.get("/", withAuth, async (req, res) => {
+// gets login page on initial load, if logged in takes user to homepage
+router.get("/", async (req, res) => {
   try {
-    res.redirect("/homepage");
+    if (req.session.loggedIn) {
+      res.redirect("/homepage");
+    }
+    res.render("login");
   } catch (err) {
     res.status(500).json(err);
   }
@@ -55,17 +58,18 @@ router.get("/profile", withAuth, async (req, res) => {
 router.get("/homepage", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [{ model: User }, { model: Comments }],
+      include: [{ model: User }],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
-    let randomIndex = Math.floor(Math.random() * quoteList.length);
-    let randomQuote = quoteList[randomIndex];
+    // let randomIndex = Math.floor(Math.random() * quoteList.length);
+    // let randomQuote = quoteList[randomIndex]
+    console.log("Posts", posts);
 
     res.render("homepage", {
-      randomQuote,
       posts,
-      logged_in: req.session.loggedIn,
+      // randomQuote,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
