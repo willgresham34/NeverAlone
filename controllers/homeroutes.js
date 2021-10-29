@@ -8,11 +8,13 @@ const quoteList = require('../db/quotes.json');
 
 //_____________-- ROUTES --_____________________
 
-// gets home page if logged in
-router.get('/', withAuth, async (req,res) => {
+// gets login page on initial load, if logged in takes user to homepage
+router.get('/', async (req,res) => {
     try {
-        
-        res.redirect('/login');
+        if(req.session.loggedIn) {
+            res.redirect('/homepage');
+        }
+        res.render('login');
     } catch(err) {
         res.status(500).json(err);
     }

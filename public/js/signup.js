@@ -4,6 +4,7 @@ const signUpHandler = async (event) => {
     const firstName = document.querySelector('#fName');
     const lastName = document.querySelector('#lName');
     const emailUser = document.querySelector('#userEmail');
+    const username = document.querySelector('#username');
     const passwordUser = document.querySelector('#userPassword');
 
     const response = await fetch('/api/user', {
@@ -12,6 +13,7 @@ const signUpHandler = async (event) => {
             first_name: firstName.value,
             last_name: lastName.value,
             email: emailUser.value,
+            username: username.value,
             password: passwordUser.value,
         }),
         headers: {'Content-Type': 'application/json'},
