@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comments } = require('../models/');
-const withAuth = require('../utils/auth');
+const {withAuth} = require('../utils/auth');
 
 
 router.get('/', async (req,res) => {
@@ -40,7 +40,7 @@ router.get('/login', async (req,res) => {
    } 
 });
 
-router.get('/profile', async (req,res) => {
+router.get('/profile', withAuth, async (req,res) => {
     try {
         res.render('profile');
     } catch(err) {
@@ -48,7 +48,7 @@ router.get('/profile', async (req,res) => {
     }
 })
 
-router.get('/homepage', async (req,res) => {
+router.get('/homepage', withAuth, async (req,res) => {
     try {
         const postData = await Post.findAll({
             include: [User],

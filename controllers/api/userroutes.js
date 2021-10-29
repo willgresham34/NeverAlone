@@ -19,7 +19,6 @@ router.post('/', async (req,res) => {
             res.json(newUser);
         });
     } catch(err) {
-        console.log('post erroer', err);
         res.status(500).json(err);
     }
 });
@@ -51,6 +50,20 @@ router.post('/login', async (req,res) => {
         });
 
     } catch(err) {
+        res.status(500).json(err);
+    }
+});
+
+router.put('/update', async (req,res) => {
+    try {
+        console.log(req.body);
+        const profileUpdate = await User.update(req.body,
+            {where: { id: req.session.userId }},
+        );
+        
+        res.json(profileUpdate);
+    } catch(err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
