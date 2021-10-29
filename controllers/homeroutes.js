@@ -15,7 +15,7 @@ router.get('/', async (req,res) => {
             res.redirect('/homepage');
         }
         res.render('login');
-    } catch(err) {
+     } catch(err) {
         res.status(500).json(err);
     }
 });
