@@ -58,21 +58,19 @@ router.get('/profile', withAuth, async (req,res) => {
 
 router.get('/homepage', async (req,res) => {
     try {
-        // const postData = await Post.findAll({
-        //     include: [{ model: User },
-        //               { model: Comments }
-        //     ],
-        //   });
+        const postData = await Post.findAll({
+            include: [{ model: User }]
+          });
       
-        // const posts = postData.map((post) => post.get({ plain: true }));
+        const posts = postData.map((post) => post.get({ plain: true }));
         // let randomIndex = Math.floor(Math.random() * quoteList.length);
         // let randomQuote = quoteList[randomIndex]
 
 
         res.render('homepage', {
-            // posts,
+            posts
             // randomQuote,
-            loggedIn: req.session.loggedIn
+            // loggedIn: req.session.loggedIn
         });
     } catch(err) {
         res.status(500).json(err);

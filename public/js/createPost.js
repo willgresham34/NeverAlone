@@ -1,9 +1,9 @@
 const createPost = async (event) => {
     event.preventDefault();
-    alert("button works");
+    // alert("button works");
 
     const content = document.querySelector('#new-post').value.trim();
-    alert("Content: " + content);
+    // alert("Content: " + content);
     
     if(content){
         try{
@@ -19,7 +19,7 @@ const createPost = async (event) => {
 
             alert("fetch done");
             if(response.ok){
-                alert("post worked");
+                // alert("post worked");
                 document.location.replace('/homepage');
              }
             else{
