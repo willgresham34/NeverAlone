@@ -69,6 +69,7 @@ router.get("/homepage", withAuth, async (req, res) => {
 
     res.render("homepage", {
       posts,
+      // comments,
       randomQuote,
       loggedIn: req.session.loggedIn,
     });
