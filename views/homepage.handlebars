@@ -1,13 +1,13 @@
 {{!-- Shows Random Quotes --}}
 <div class="d-flex justify-content-between">
-  <div class="mt-3">
-    <div class="px-2">
+  <div class="mt-3 px-4 text-center" style="width: 40rem;">
+    <div>
       <h4>Quote of the Day... </h4>
-      <p class="border border-dark rounded">{{randomQuote.quote}}</p>
+      <p class="border border-dark rounded text-wrap font-italic" style="height: 3rem;">{{randomQuote.quote}}</p>
     </div>
 
     {{!-- Create a post --}}
-    <form class="text-center">
+    <form>
       <div class="form-group">
         <label for="new-post"></label>
         <textarea id="new-post" placeholder="How are you feeling?" class="form-control text-center" rows="5" name="userPost"></textarea>
