@@ -29,19 +29,36 @@
             <div class="card-body bg-dark text-light">
               <p class="card-text">{{content}}</p>
               <form class="comment-form" data-id={{id}}>
-                <input class="comment-input" data-postid={{id}}  />
+                
+                {{#each post.Comments as |comment|}}
+        <div class="container-fluid mt-2 mb-2">
+          <div class="row">
+            <div class="col-12">
+            <div class="card text-center bg-primary text-light">
+            <h6 class="card-text">Comment by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
+            <div class="card-body bg-dark text-light">
+              <p>{{body}}</p>
+            </div>
+          </div>
+          </div>
+          </div>
+        </div>
+        
+        {{/each}}
               <button type="submit" class="btn btn-light mt-3 new-comment-btn" data-toggle="modal" data-target="#comment-modal">
-             Comment</button>
+             Add Comment</button>
+             <input class="comment-input" data-postid={{id}} placeholder="add helpful comment"  />
              </form>
             </div>
           </div>
         </div>
-        {{#each post.Comments as |comment|}}
-        <p>{{body}}</p>
-        {{/each}}
+        
       </div>
     </div>
+
   {{/each}}
+
+{{!-- closing tag for post-wrapper --}}
 </div>
 
   {{!-- <div class="post">
