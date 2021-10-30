@@ -48,41 +48,51 @@ router.get("/login", async (req, res) => {
 
 // get profile page when logged in
 router.get('/profile', withAuth, async (req,res) => {
-    try {
-        res.render('profile', {loggedIn: req.session.loggedIn});
-    } catch(err) {
-        res.status(500).json(err);
-    }
-})
+
+  try {
+    const postData = await Post.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      include: [
+        {
+          model: User
+        }
+      ]
+    })
+
+    const userPosts = postData.map(post => post.get({ plain: true }));
+
+    console.log("Posts on Profile: ", userPosts);
+
+    res.render('profile', { userPosts, loggedIn: req.session.loggedIn });
+  } 
+  catch(err) {
+      res.status(500).json(err);
+  }
+});
 
 
 // get home page when logged in
 
 router.get('/homepage', withAuth, async (req,res) => {
-    try {
-        const postData = await Post.findAll({
-            include: [{ model: User }]
-          });
-      
-        const posts = postData.map((post) => post.get({ plain: true }));
-        let randomIndex = Math.floor(Math.random() * quoteList.length);
-        let randomQuote = quoteList[randomIndex]
-        console.log("Posts", posts);
-
-        res.render('homepage', {
-            posts,
-            randomQuote,
-            loggedIn: req.session.loggedIn
-        });
-    } catch(err) {
-        res.status(500).json(err);
-    }
-    res.render("homepage", {
-      posts,
-      // randomQuote,
-      loggedIn: req.session.loggedIn,
+  try {
+    const postData = await Post.findAll({
+      include: [{ model: User }]
     });
-  } catch (err) {
+  
+    const posts = postData.map((post) => post.get({ plain: true }));
+    let randomIndex = Math.floor(Math.random() * quoteList.length);
+    let randomQuote = quoteList[randomIndex]
+    console.log("Posts", posts);
+
+    res.render('homepage', {
+      posts,
+      randomQuote,
+      loggedIn: req.session.loggedIn
+    });
+  } 
+  catch(err) {
     res.status(500).json(err);
   }
 });
