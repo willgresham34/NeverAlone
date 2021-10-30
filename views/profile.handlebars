@@ -7,18 +7,18 @@
         class="rounded-circle align-self-center mt-5 w-50 h-50"
       />
       <h3 class="align-self-center m-2">
-        {{first_name}} {{last_name}}
+        {{dataUser.first_name}} {{dataUser.last_name}}
       </h3>
-      <small class="align-self-center"> @{{username}} </small>
-      <textarea class=" align-self-center m-2" cols="50" id="user-bio">
-        {{user_bio}}
-      </textarea>
+      <small class="align-self-center"> @{{dataUser.username}} </small>
+      <div class=" align-self-center m-2" cols="50" id="user-bio">
+        {{dataUser.bio}}
+      </div>
       <button
         type="button"
         class="btn btn-sm align-self-center btn-secondary m-2"
-        id='save-button'
+        id='edit-button'
       >
-        Save Profile
+        Edit Profile
       </button>
     </div>
     <div class="col-7 border border-dark mt-3">
@@ -28,6 +28,21 @@
           {{post_content}}
         </p>
       {{/each}}
+    </div>
+  </div>
+  <div id="myModal" class="modal m2">
+    <div class='modal-content'>
+      <span class='close'>&times;</span>
+      <p class=" align-self-center m-2">Enter your new bio</p>
+      <textarea class=" align-self-center m-2" cols="50" id="user-bio">
+      </textarea>
+      <button
+        type="button"
+        class="btn btn-sm align-self-center btn-secondary m-2"
+        id='save-button'
+      >
+        Save
+      </button>
     </div>
   </div>
 </div>
