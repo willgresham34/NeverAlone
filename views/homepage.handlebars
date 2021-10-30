@@ -27,6 +27,7 @@
             <h6 class="card-text">Posted by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
             <div class="card-body bg-dark text-light">
               <p class="card-text">{{content}}</p>
+              <button type="submit" id="new-comment-btn" class="btn btn-light mt-3">Comment</button>
             </div>
           </div>
         </div>
@@ -71,3 +72,4 @@
 
 
 <script src="/js/createPost.js"></script>
+<script src="/js/comments.js"></script>
