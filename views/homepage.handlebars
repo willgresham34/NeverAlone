@@ -18,19 +18,27 @@
 
 
 {{!-- Shows each posts on homepage --}}
-<div class="col" class="homepagePosts" style="height: 50em; overflow-y: scroll;">
+<div id="post-wrapper" class="col" class="homepagePosts" style="height: 50em; overflow-y: scroll;">
+
   {{#each posts as |post|}}    
-    <div class="container-fluid mt-2 mb-2">
+  <div class="container-fluid mt-2 mb-2">
       <div class="row">
         <div class="col-12">
           <div class="card text-center bg-primary text-light">
             <h6 class="card-text">Posted by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
             <div class="card-body bg-dark text-light">
               <p class="card-text">{{content}}</p>
-              <button type="submit" id="new-comment-btn" class="btn btn-light mt-3">Comment</button>
+              <form class="comment-form" data-id={{id}}>
+                <input class="comment-input" data-postid={{id}}  />
+              <button type="submit" class="btn btn-light mt-3 new-comment-btn" data-toggle="modal" data-target="#comment-modal">
+             Comment</button>
+             </form>
             </div>
           </div>
         </div>
+        {{#each post.Comments as |comment|}}
+        <p>{{body}}</p>
+        {{/each}}
       </div>
     </div>
   {{/each}}
