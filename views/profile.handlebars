@@ -23,11 +23,26 @@
     </div>
     <div class="col-7 border border-dark mt-3">
       <h2 class=" ml-4">My Posts ...</h2>
-      {{#each posts as |post|}}
-        <p class="rounded border border-secondary p-2">
-          {{post_content}}
-        </p>
-      {{/each}}
+
+ {{!-- Shows each posts on profile --}}
+  <div class="col" style="height: 50em; overflow-y: scroll;">
+    {{#each userPosts as |post|}}    
+      <div class="container-fluid mt-2 mb-2">
+        <div class="row">
+          <div class="col-12">
+            <div class="card text-center bg-primary text-light">
+              <h6 class="card-text">Posted on {{format_date createdAt}} at {{format_time createdAt}}</h6>
+              <div class="card-body bg-dark text-light">
+                <p class="card-text">{{content}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+
     </div>
   </div>
 </div>
