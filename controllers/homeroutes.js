@@ -50,7 +50,14 @@ router.get("/login", async (req, res) => {
 // get profile page when logged in
 router.get("/profile", withAuth, async (req, res) => {
   try {
-    res.render("profile", { loggedIn: req.session.loggedIn });
+    const userData = await User.findOne({
+      where: {
+        id: req.session.userId,
+      },
+    });
+    console.log('bio', userData.bio);
+    const dataUser = userData.get({plain: true});
+    res.render("profile", { loggedIn: req.session.loggedIn, dataUser });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -77,11 +84,6 @@ router.get("/homepage", withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  res.render("homepage", {
-    posts,
-    // randomQuote,
-    loggedIn: req.session.loggedIn,
-  });
 });
 
 module.exports = router;
