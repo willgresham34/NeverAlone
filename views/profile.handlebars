@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-4 d-flex flex-column mt-3">
       <img alt="Bootstrap Image Preview" src="https://www.kindpng.com/picc/m/285-2855863_a-festival-celebrating-tractors-round-profile-picture-placeholder.png" class="rounded-circle align-self-center mt-5 w-20 h-25"/>
-      <h3 class="align-self-center m-2 text-light">{{userPosts.[0].User.first_name}} {{userPosts.[0].User.last_name}}</h3>
-      <small class="align-self-center text-light"> @{{userPosts.[0].User.username}} </small>
-      <div class=" align-self-center m-2 text-light" cols="50" id="user-bio">{{userPosts.[0].User.bio}}</div>
+      <h3 class="align-self-center m-2 text-light">{{user.[0].first_name}} {{user.[0].last_name}}</h3>
+      <small class="align-self-center text-light"> @ {{user.[0].username}}  </small>
+      <div class=" align-self-center m-2 text-light" cols="50" id="user-bio">{{user.[0].bio}}</div>
       <button type="button" class="btn btn-sm align-self-center btn-dark m-2" id='edit-button'>Edit Profile</button>
     </div>
     <div class="col-8 mt-3">
