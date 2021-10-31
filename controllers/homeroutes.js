@@ -79,14 +79,19 @@ router.get("/profile", withAuth, async (req, res) => {
 router.get("/homepage", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [{ model: User }, {model: Comments}],
+      include:[ User,
+      {
+        model:Comments,
+        include: User,
+      },
+    ],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
     let randomIndex = Math.floor(Math.random() * quoteList.length);
     let randomQuote = quoteList[randomIndex];
     
-    console.log("Posts", posts);
+    console.log("Posts on Homepage: ", posts);
 
     res.render("homepage", {
       posts,
