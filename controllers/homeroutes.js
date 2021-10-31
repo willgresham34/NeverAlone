@@ -44,11 +44,17 @@ router.get("/login", async (req, res) => {
   }
 });
 
-// get profile page when logged in
+// Gets user data to profile so data displays when user doesn't have any posts
+router.get('/profile', withAuth, async (req, res) => {
+  try{
+    const userData = await User.findAll({
+      where: {
+        id: req.session.userId,
+      },
+    });
+    const user = userData.map(data => data.get({ plain: true }));
+    console.log('User Data (user): ',user);
 
-router.get("/profile", withAuth, async (req, res) => {
-
-  try {
     const postData = await Post.findAll({
       where: {
         user_id: req.session.userId,
@@ -65,13 +71,12 @@ router.get("/profile", withAuth, async (req, res) => {
 
     console.log("Posts on Profile (userPosts): ", userPosts);
 
-    res.render('profile', { userPosts, loggedIn: req.session.loggedIn });
-  } 
-  catch (err) {
+    res.render('profile', {user, userPosts, loggedIn:req.session.loggedIn});
+  }
+  catch(err){
     res.status(500).json(err);
   }
 });
-
 
 // Renders page to edit a post
 
