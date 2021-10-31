@@ -76,8 +76,30 @@ router.get("/profile", withAuth, async (req, res) => {
 // Renders page to edit a post
 
 router.get("/profile/edit/:id", withAuth, async (req, res) => {
-  res.render("editPost");
-})
+  try{
+    const selectedPost = await Post.findByPk(req.params.id, {
+      include:[
+        User,
+
+       {
+         model: Comments,
+         include: [User],
+       },
+     ],
+   });
+   if(selectedPost){
+     const editPost = selectedPost.get({ plain: true });
+     console.log("Post to Edit (editPost): ", editPost);
+     res.render("editPost", { editPost, loggedIn: true });
+   }
+   else{
+     res.status(404).end();
+   }
+  }
+  catch(err){
+    res.status(500).json(err);
+  }
+});
 
 
 

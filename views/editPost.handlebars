@@ -1,18 +1,23 @@
-<p>hello</p>
-
-
-
-
-
-{{!-- <div class="container-fluid mt-2 mb-2">
+{{!-- Displays card to update or delete posts from the dashboard --}}
+<div class="container-fluid edit-post">
     <div class="row">
-        <div class="col-12">
-            <div class="card-header text-center bg-dark text-light">
-                <h6 class="card-text bg-dark">Posted on {{format_date createdAt}} at {{format_time createdAt}}</h6>
-                <div class="card-body bg-dark text-light">
-                    <p class="card-text">{{content}}</p>
-                </div>
+        <div class="col-8 offset-2 mt-3">
+            <div class="card bg-dark">
+                <form class="bg-dark text-center" id="selected-post-form">
+                    <div class="form-group card-header bg-dark">
+                        <input type="hidden" name="selected-post-id" value="{{editPost.id}}"/>
+                    
+                        <label class="card-body form-label bg-dark text-white" for="selected-post-description">Edit Post</label>
+                        <input class="form-control text-center" name="selected-post-description" rows="3" placeholder="{{editPost.content}}"></input>
+                        
+                        <button type="submit" class="btn btn-primary post-btn mt-3" id="update-post-btn">Update</button>
+                        <button type="button" class="btn btn-danger post-btn mt-3" id="delete-post-btn">Delete</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div> --}}
+</div>
+<script src="/js/editPost.js"></script>
+
+
