@@ -48,16 +48,37 @@ router.get("/login", async (req, res) => {
 // get profile page when logged in
 
 router.get("/profile", withAuth, async (req, res) => {
+
   try {
-    const userData = await User.findOne({
+    const postData = await Post.findAll({
       where: {
-        id: req.session.userId,
+        user_id: req.session.userId,
       },
+<<<<<<< HEAD
     });
     console.log("bio", userData.bio);
     const dataUser = userData.get({ plain: true });
     res.render("profile", { loggedIn: req.session.loggedIn, dataUser });
   } catch (err) {
+=======
+      include: [
+        {
+          model: User
+        }
+      ]
+    })
+
+    const userPosts = postData.map(post => post.get({ plain: true }));
+
+    console.log("Posts on Profile (userPosts): ", userPosts);
+
+    res.render('profile', { userPosts, loggedIn: req.session.loggedIn });
+  } 
+
+
+
+  catch (err) {
+>>>>>>> 6c55aaf4aaaf74da9f6f51ddc0c87e0b97529abf
     res.status(500).json(err);
   }
 });
@@ -67,14 +88,28 @@ router.get("/profile", withAuth, async (req, res) => {
 router.get("/homepage", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
+<<<<<<< HEAD
       include: [{ model: User }, { model: Comments }],
+=======
+      include:[ User,
+      {
+        model:Comments,
+        include: User,
+      },
+    ],
+>>>>>>> 6c55aaf4aaaf74da9f6f51ddc0c87e0b97529abf
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
     let randomIndex = Math.floor(Math.random() * quoteList.length);
     let randomQuote = quoteList[randomIndex];
+<<<<<<< HEAD
 
     console.log("Posts", posts);
+=======
+    
+    console.log("Posts on Homepage: ", posts);
+>>>>>>> 6c55aaf4aaaf74da9f6f51ddc0c87e0b97529abf
 
     res.render("homepage", {
       posts,
