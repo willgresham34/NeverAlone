@@ -43,5 +43,28 @@ router.put('/profile/edit/:id', withAuth, async (req,res) => {
 });
 
 
+// Deletes selected post
+router.delete('/profile/edit/:id', withAuth, async (req,res) => {
+    try{
+        const deletePost = await Post.destroy({
+            where: {
+                id: req.params.id,
+            },
+        });
+
+        if(deletePost){
+            res.status(200).end();
+        }
+        else{
+            res.status(404).end();
+        }
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
+
+
 
 module.exports = router;
