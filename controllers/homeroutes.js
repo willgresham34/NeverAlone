@@ -57,7 +57,8 @@ router.get("/profile", withAuth, async (req, res) => {
         {
           model: User
         }
-      ]
+      ],
+      order: [['created_at', 'DESC']],
     })
 
     const userPosts = postData.map(post => post.get({ plain: true }));
@@ -85,6 +86,7 @@ router.get("/homepage", withAuth, async (req, res) => {
         include: User,
       },
     ],
+    order: [['created_at', 'DESC']],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
