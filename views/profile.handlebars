@@ -2,33 +2,31 @@
   <div class="row">
     <div class="col-4 d-flex flex-column mt-3">
       <img alt="Bootstrap Image Preview" src="https://www.kindpng.com/picc/m/285-2855863_a-festival-celebrating-tractors-round-profile-picture-placeholder.png" class="rounded-circle align-self-center mt-5 w-20 h-25"/>
-      <h3 class="align-self-center m-2 text-light">{{userPosts.[0].User.first_name}} {{userPosts.[0].User.last_name}}</h3>
-      <small class="align-self-center text-light"> @{{userPosts.[0].User.username}} </small>
-      <div class=" align-self-center m-2 text-light" cols="50" id="user-bio">{{userPosts.[0].User.bio}}</div>
+      <h3 class="align-self-center m-2 text-light">{{user.[0].first_name}} {{user.[0].last_name}}</h3>
+      <small class="align-self-center text-light"> @ {{user.[0].username}}  </small>
+      <div class=" align-self-center m-2 text-light" cols="50" id="user-bio">{{user.[0].bio}}</div>
       <button type="button" class="btn btn-sm align-self-center btn-dark m-2" id='edit-button'>Edit Profile</button>
     </div>
     <div class="col-8 mt-3">
       <h2 class="text-center text-light">My Posts</h2>
       <h6 class="text-center text-light">Click on a post to update or delete it</h6>
-
-    {{!-- Shows each posts on profile --}}
-    <div class="col border border-dark rounded" style="height: 50em; overflow-y: scroll;">
-      {{#each userPosts as |post|}}  
-        <div class="container-fluid mt-2 mb-2">
-          <div class="row">
-            <div class="col-12">
-      <button type="button" class="btn btn-block btn-outline-dark">
-              <div class="card-header text-center bg-dark text-light">
-                <h6 class="card-text bg-dark">Posted on {{format_date createdAt}} at {{format_time createdAt}}</h6>
-                <div class="card-body bg-dark text-light">
-                  <p class="card-text">{{content}}</p>
-                </div>
-              </div>
-        </button>
+      {{!-- Shows each posts on profile --}}
+      <div class="col border border-dark rounded" style="height: 50em; overflow-y: scroll;">
+        {{#each userPosts}}  
+          <form class="container-fluid mt-2 mb-2" action="/profile/edit/{{id}}" method="get">
+            <div class="row">
+              <button class="col-12 bg-dark p-2">
+                  <div class="card-header text-center bg-dark text-light">
+                    <h6 class="card-text bg-dark">Posted on {{format_date createdAt}} at {{format_time createdAt}}</h6>
+                  </div>   
+                  <div class="card-body bg-dark text-light">
+                    <p class="card-text bg-dark">{{content}}</p>
+                  </div>
+              </button>
             </div>
-          </div>
-        </div>
-      {{/each}}
+          </form>
+        {{/each}}
+      </div>
     </div>
   </div>
 
@@ -44,3 +42,4 @@
 </div>
 
 <script src='/js/saveprofile.js'></script>
+<script src="/js/editPost.js"></script>

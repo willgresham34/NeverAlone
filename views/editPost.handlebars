@@ -1,0 +1,25 @@
+{{!-- Displays card to update or delete posts from the dashboard --}}
+<div class="container-fluid edit-post">
+    <div class="row">
+        <div class="col-8 offset-2 mt-3">
+            <div class="card bg-dark">
+                <form class="bg-dark text-center" id="selected-post-form">
+                    <div class="form-group card-header bg-dark">
+                        <input type="hidden" name="selected-post-id" value="{{editPost.id}}"/>
+                    
+                        <label class="card-body form-label bg-dark text-white" for="selected-post-content">Edit or Delete Post</label>
+                        <input class="form-control text-center" name="selected-post-content" rows="3" placeholder="{{editPost.content}}"></input>
+                        
+                        <button type="submit" class="btn btn-primary btn-sm btn-block post-btn mt-3" id="edit-post-btn">Edit</button>
+                        <button type="submit" class="btn btn-danger btn-sm btn-block post-btn mt-3" id="delete-post-btn">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/editPost.js"></script>
+<script src="/js/deletePost.js"></script>
+
+
+

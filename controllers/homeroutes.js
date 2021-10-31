@@ -44,10 +44,18 @@ router.get("/login", async (req, res) => {
   }
 });
 
-// get profile page when logged in
 
-router.get("/profile", withAuth, async (req, res) => {
-  try {
+// Gets user data to profile so data displays when user doesn't have any posts
+router.get('/profile', withAuth, async (req, res) => {
+  try{
+    const userData = await User.findAll({
+      where: {
+        id: req.session.userId,
+      },
+    });
+    const user = userData.map(data => data.get({ plain: true }));
+    console.log('User Data (user): ',user);
+
     const postData = await Post.findAll({
       where: {
         user_id: req.session.userId,
@@ -64,11 +72,45 @@ router.get("/profile", withAuth, async (req, res) => {
 
     console.log("Posts on Profile (userPosts): ", userPosts);
 
-    res.render("profile", { userPosts, loggedIn: req.session.loggedIn });
-  } catch (err) {
+    res.render('profile', {user, userPosts, loggedIn:req.session.loggedIn});
+  }
+  catch(err){
     res.status(500).json(err);
   }
 });
+
+// Renders page to edit a post
+
+router.get("/profile/edit/:id", withAuth, async (req, res) => {
+  try{
+    const selectedPost = await Post.findByPk(req.params.id, {
+      include:[
+        User,
+
+       {
+         model: Comments,
+         include: [User],
+       },
+     ],
+   });
+   if(selectedPost){
+     const editPost = selectedPost.get({ plain: true });
+     console.log("Post to Edit (editPost): ", editPost);
+     res.render("editPost", { editPost, loggedIn: true });
+   }
+   else{
+     res.status(404).end();
+   }
+  }
+  catch(err){
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+
 
 // get home page when logged in
 
