@@ -6,48 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Never Alone</title>
     <link rel="icon" href="/assets/icons8-people-hugging-emoji-96.png"/>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="/css/style.css"/>
-
   </head>
+
   <body>
-    
     <header class="container-fluid">
       <div class="row bg-dark d-flex text-center">
         <div class=" col-12 bg-dark d-flex justify-content-center">
             <a href="/homepage" class="text-danger text-center align-self-center bg-dark"> <h1 class="bg-dark">Never Alone</h1></a> 
         </div>
         {{#if loggedIn}} 
-        <div class="ml-auto mt-0 bg-dark">
-             <a class="text-white p-2" href="/profile">My Profile</a>       
-             <a class="text-white p-2" id='logout-btn'>Logout<a/>
-        </div> 
-         {{/if}} 
-        </div>
+          <div class="ml-auto mt-0 bg-dark">
+              <a class="text-white p-2" href="/profile">My Profile</a>       
+              <a class="text-white p-2" id='logout-btn'>Logout<a/>
+          </div> 
+        {{/if}} 
+      </div>
     </header>
    
-      <main>
-        <div>
-          {{{body}}}
-        </div>
-      </main>
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"
-      ></script>
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"
-      ></script>
-      <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"
-      ></script>
-      <script src='/js/logout.js'></script>
+    <main>
+      <div>
+        {{{body}}}
+      </div>
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src='/js/logout.js'></script>
   </body>
 </html>
 
