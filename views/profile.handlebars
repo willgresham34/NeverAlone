@@ -7,30 +7,59 @@
         class="rounded-circle align-self-center mt-5 w-50 h-50"
       />
       <h3 class="align-self-center m-2">
-        {{first_name}} {{last_name}}
+        {{dataUser.first_name}} {{dataUser.last_name}}
       </h3>
-      <small class="align-self-center"> @{{username}} </small>
+      <small class="align-self-center"> @{{dataUser.username}} </small>
+      <div class=" align-self-center m-2" cols="50" id="user-bio">
+        {{dataUser.bio}}
+      </div>
+      <button
+        type="button"
+        class="btn btn-sm align-self-center btn-secondary m-2"
+        id='edit-button'
+      >
+        Edit Profile
+      </button>
+    </div>
+    <div class="col-7 border border-dark mt-3">
+      <h2 class="text-center">My Posts</h2>
+
+ {{!-- Shows each posts on profile --}}
+  <div class="col" style="height: 50em; overflow-y: scroll;">
+    {{#each userPosts as |post|}}    
+      <div class="container-fluid mt-2 mb-2">
+        <div class="row">
+          <div class="col-12">
+            <div class="card text-center bg-primary text-light">
+              <h6 class="card-text">Posted on {{format_date createdAt}} at {{format_time createdAt}}</h6>
+              <div class="card-body bg-dark text-light">
+                <p class="card-text">{{content}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+
+    </div>
+  </div>
+  <div id="myModal" class="modal m2">
+    <div class='modal-content'>
+      <span class='close'>&times;</span>
+      <p class=" align-self-center m-2">Enter your new bio</p>
       <textarea class=" align-self-center m-2" cols="50" id="user-bio">
-        {{user_bio}}
       </textarea>
       <button
         type="button"
         class="btn btn-sm align-self-center btn-secondary m-2"
         id='save-button'
       >
-        Save Profile
+        Save
       </button>
-    </div>
-    <div class="col-7 border border-dark mt-3">
-      <h2 class=" ml-4">My Posts ...</h2>
-      {{#each posts as |post|}}
-        <p class="rounded border border-secondary p-2">
-          {{post_content}}
-        </p>
-      {{/each}}
     </div>
   </div>
 </div>
 
 <script src='/js/saveprofile.js'></script>
-
