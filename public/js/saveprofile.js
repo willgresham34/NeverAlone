@@ -31,6 +31,9 @@ const userBioHandler = async (event) => {
         }),
         headers: {'Content-Type': 'application/json'},
     });
+
+    modal.style.display = "none";
+    reload = location.reload();
 };
 
 window.addEventListener('click', clickAnywhere);
