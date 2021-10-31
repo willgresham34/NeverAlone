@@ -1,9 +1,9 @@
 {{!-- Shows Random Quotes --}}
 <div class="d-flex justify-content-between">
-  <div class="mt-3 px-4 text-center" style="width: 40rem;">
+  <div class="mt-3 px-4 text-center" style="width: 30rem;">
     <div>
       <h4>Quote of the Day... </h4>
-      <p class="border border-dark rounded text-wrap font-italic" style="height: 3rem;">{{randomQuote.quote}}</p>
+      <p class="border border-dark bg-light rounded text-wrap font-italic" style="height: 3rem;">{{randomQuote.quote}}</p>
     </div>
 
     {{!-- Create a post --}}
@@ -21,23 +21,23 @@
 <div id="post-wrapper" class="col" class="homepagePosts" style="height: 50em; overflow-y: scroll;">
 
   {{#each posts as |post|}}    
-  <div class="container-fluid mt-2 mb-2">
+  <div class="container-fluid my-2 bg-dark">
       <div class="row">
         <div class="col-12">
-          <div class="card text-center bg-primary text-light">
-            <h6 class="card-text">Posted by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
-            <div class="card-body bg-dark text-light">
-              <p class="card-text">{{content}}</p>
-              <form class="comment-form" data-id={{id}}>
+          <div class="card text-center bg-dark text-light">
+            <h6 class="card-text bg-dark">Post by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
+            <div class="card-body bg-dark">
+              <p class="card-text rounded">{{content}}</p>
+              <form class="comment-form bg-dark" data-id={{id}}>
                 
                 {{#each post.Comments as |comment|}}
-        <div class="container-fluid mt-2 mb-2">
+        <div class="container-fluid my-2">
           <div class="row">
-            <div class="col-12">
-            <div class="card text-center bg-primary text-light">
-            <h6 class="card-text">Comment by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
-            <div class="card-body bg-dark text-light">
-              <p>{{body}}</p>
+            <div class="col-12 bg-dark">
+            <div class="card text-center bg-dark">
+            <h6 class="card-text bg-dark">Comment by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
+            <div class="card-body">
+              <p class="">{{body}}</p>
             </div>
           </div>
           </div>
@@ -45,9 +45,11 @@
         </div>
         
         {{/each}}
-              <button type="submit" class="btn btn-light mt-3 new-comment-btn" data-toggle="modal" data-target="#comment-modal">
-             Add Comment</button>
-             <input class="comment-input" data-postid={{id}} placeholder="add helpful comment"  />
+              <div class="d-flex justify-content-center bg-dark">
+                 <input class="comment-input align-self-center bg-light" data-postid={{id}} placeholder="Add helpful comment"  />
+                <button type="submit" class="btn btn-light btn-sm m-2 new-comment-btn align-self-center" data-toggle="modal" data-target="#comment-modal">
+                 Add Comment</button>
+              </div>
              </form>
             </div>
           </div>
