@@ -26,6 +26,7 @@ router.get("/sign-up", async (req, res) => {
       res.redirect("/homepage");
     }
     res.render("signup", { logged_in: req.session.loggedIn });
+    // console.log("Data:", req.body.email);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -53,8 +54,8 @@ router.get("/profile", withAuth, async (req, res) => {
         id: req.session.userId,
       },
     });
-    console.log('bio', userData.bio);
-    const dataUser = userData.get({plain: true});
+    console.log("bio", userData.bio);
+    const dataUser = userData.get({ plain: true });
     res.render("profile", { loggedIn: req.session.loggedIn, dataUser });
   } catch (err) {
     res.status(500).json(err);
@@ -66,13 +67,13 @@ router.get("/profile", withAuth, async (req, res) => {
 router.get("/homepage", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [{ model: User }, {model: Comments}],
+      include: [{ model: User }, { model: Comments }],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
     let randomIndex = Math.floor(Math.random() * quoteList.length);
     let randomQuote = quoteList[randomIndex];
-    
+
     console.log("Posts", posts);
 
     res.render("homepage", {
@@ -81,8 +82,7 @@ router.get("/homepage", withAuth, async (req, res) => {
       randomQuote,
       loggedIn: req.session.loggedIn,
     });
-  } 
-  catch(err) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });
