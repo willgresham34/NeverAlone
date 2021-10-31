@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+nodemailer = require("nodemailer");
 
 //Transporter set what email its coming from
 const transporter = nodemailer.createTransport({

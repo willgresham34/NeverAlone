@@ -54,18 +54,11 @@ router.get("/profile", withAuth, async (req, res) => {
       },
       include: [
         {
-<<<<<<< HEAD
           model: User,
         },
       ],
+      order: [["created_at", "DESC"]],
     });
-=======
-          model: User
-        }
-      ],
-      order: [['created_at', 'DESC']],
-    })
->>>>>>> bbdf4b79e1d00245c412e37bd0205a9714331872
 
     const userPosts = postData.map((post) => post.get({ plain: true }));
 
@@ -82,7 +75,6 @@ router.get("/profile", withAuth, async (req, res) => {
 router.get("/homepage", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
-<<<<<<< HEAD
       include: [
         User,
         {
@@ -90,15 +82,7 @@ router.get("/homepage", withAuth, async (req, res) => {
           include: User,
         },
       ],
-=======
-      include:[ User,
-      {
-        model:Comments,
-        include: User,
-      },
-    ],
-    order: [['created_at', 'DESC']],
->>>>>>> bbdf4b79e1d00245c412e37bd0205a9714331872
+      order: [["created_at", "DESC"]],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
