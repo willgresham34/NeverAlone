@@ -2,7 +2,7 @@
 <div class="d-flex justify-content-between">
   <div class="mt-3 px-4 text-center" style="width: 30rem;">
     <div>
-      <h4>Quote of the Day... </h4>
+      <h4 class="text-danger">Quote of the Day... </h4>
       <p class="border border-dark bg-light rounded text-wrap font-italic" style="height: 3rem;">{{randomQuote.quote}}</p>
     </div>
 
@@ -16,70 +16,48 @@
     </form>
   </div>
 
-
-{{!-- Shows each posts on homepage --}}
-<div id="post-wrapper" class="col" class="homepagePosts" style="height: 50em; overflow-y: scroll;">
-
-  {{#each posts as |post|}}    
-  <div class="container-fluid my-2 bg-dark">
-      <div class="row">
-        <div class="col-12">
-          <div class="card text-center bg-dark text-light">
-            <h6 class="card-text bg-dark">Post by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
-            <div class="card-body bg-dark">
-              <p class="card-text rounded">{{content}}</p>
-              <form class="comment-form bg-dark" data-id={{id}}>
-                
-                {{#each post.Comments as |comment|}}
-        <div class="container-fluid my-2">
-          <div class="row">
-            <div class="col-12 bg-dark">
-            <div class="card text-center bg-dark">
-            <h6 class="card-text bg-dark">Comment by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
-            <div class="card-body">
-              <p class="">{{body}}</p>
-            </div>
-          </div>
-          </div>
-          </div>
-        </div>
-        
-        {{/each}}
-              <div class="d-flex justify-content-center bg-dark">
-                 <input class="comment-input align-self-center bg-light" data-postid={{id}} placeholder="Add helpful comment"  />
-                <button type="submit" class="btn btn-light btn-sm m-2 new-comment-btn align-self-center" data-toggle="modal" data-target="#comment-modal">
-                 Add Comment</button>
+  {{!-- Shows each posts on homepage --}}
+  <div id="post-wrapper" class="col" class="homepagePosts" style="height: 50em; overflow-y: scroll;">
+    {{#each posts as |post|}}    
+      <div class="container-fluid my-4 bg-dark">
+        <div class="row">
+          <div class="col-12">
+            <div class="card-header text-center bg-dark text-light">
+              <h6 class="card-text bg-dark">Post by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
+              <div class="card-body bg-dark">
+                <p class="card-text rounded">{{content}}</p>
+                <form class="comment-form bg-dark" data-id={{id}}>
+                  {{#each post.Comments as |comment|}}
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-12 bg-dark">
+                          <div class="card-header text-center bg-dark">
+                            <h6 class="card-text bg-dark">Comment by {{User.username}}<br> on {{format_date createdAt}} at {{format_time createdAt}}</h6>
+                            <div class="card-body">
+                              <p class="">{{body}}</p>
+                            </div>
+                          </div>  
+                        </div>
+                      </div>
+                    </div>
+                  {{/each}}
+                  <div class="d-flex justify-content-center bg-dark">
+                    <input class="comment-input align-self-center bg-light" data-postid={{id}} placeholder="Add helpful comment"  />
+                    <button type="submit" class="btn btn-light btn-sm m-2 new-comment-btn align-self-center" data-toggle="modal" data-target="#comment-modal">Add Comment</button>
+                  </div>
+                </form>
               </div>
-             </form>
             </div>
           </div>
         </div>
-        
       </div>
-    </div>
+    {{/each}}
+  {{!-- closing tag for post-wrapper --}}
+  </div>
 
-  {{/each}}
-
-{{!-- closing tag for post-wrapper --}}
-</div>
-
-  {{!-- <div class="post">
-      <article class="card">
-        <div class="card-header flex-row justify-space-between bg-primary text-light text-center">
-          <div>
-            Posted by
-          </div>
-        </div>
-        <div class="card-body bg-dark text-light text-center">
-          {{content}}
-        </div>
-      </article>
-    </div>  
-  {{/each}}
-  </div> --}}
   {{!-- Shows recent friends list --}}
   <div class="p-2 mt-3">
-    <h4>Recent Friends</h4>
+    <h4 class="text-danger">Recent Friends</h4>
     <ul class="list-unstyled">
       <li class="list-item">{{username}}</li>
       <li class="list-item">{{username}}</li>

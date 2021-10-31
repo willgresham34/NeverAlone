@@ -1,63 +1,41 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-5 d-flex flex-column mt-3">
-      <img
-        alt="Bootstrap Image Preview"
-        src="https://www.kindpng.com/picc/m/285-2855863_a-festival-celebrating-tractors-round-profile-picture-placeholder.png"
-        class="rounded-circle align-self-center mt-5 w-50 h-50"
-      />
-      <h3 class="align-self-center m-2 text-light">
-        {{dataUser.first_name}} {{dataUser.last_name}}
-      </h3>
-      <small class="align-self-center text-light"> @{{dataUser.username}} </small>
-      <div class=" align-self-center m-2 text-light" cols="50" id="user-bio">
-        {{dataUser.bio}}
-      </div>
-      <button
-        type="button"
-        class="btn btn-sm align-self-center btn-dark m-2"
-        id='edit-button'
-      >
-        Edit Profile
-      </button>
+    <div class="col-4 d-flex flex-column mt-3">
+      <img alt="Bootstrap Image Preview" src="https://www.kindpng.com/picc/m/285-2855863_a-festival-celebrating-tractors-round-profile-picture-placeholder.png" class="rounded-circle align-self-center mt-5 w-20 h-25"/>
+      <h3 class="align-self-center m-2 text-light">{{userPosts.[0].User.first_name}} {{userPosts.[0].User.last_name}}</h3>
+      <small class="align-self-center text-light"> @{{userPosts.[0].User.username}} </small>
+      <div class=" align-self-center m-2 text-light" cols="50" id="user-bio">{{userPosts.[0].User.bio}}</div>
+      <button type="button" class="btn btn-sm align-self-center btn-dark m-2" id='edit-button'>Edit Profile</button>
     </div>
-    <div class="col-7 mt-3">
-      <h2 class="text-center text-dark">My Posts</h2>
+    <div class="col-8 mt-3">
+      <h2 class="text-center text-light">My Posts</h2>
 
- {{!-- Shows each posts on profile --}}
-  <div class="col border border-dark rounded" style="height: 50em; overflow-y: scroll;">
-    {{#each userPosts as |post|}}    
-      <div class="container-fluid mt-2 mb-2">
-        <div class="row">
-          <div class="col-12">
-            <div class="card text-center bg-primary text-light">
-              <h6 class="card-text ">Posted on {{format_date createdAt}} at {{format_time createdAt}}</h6>
-              <div class="card-body bg-dark text-light">
-                <p class="card-text">{{content}}</p>
+    {{!-- Shows each posts on profile --}}
+    <div class="col border border-dark rounded" style="height: 50em; overflow-y: scroll;">
+      {{#each userPosts as |post|}}    
+        <div class="container-fluid mt-2 mb-2" action="/homepage">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-header text-center bg-dark text-light">
+                <h6 class="card-text bg-dark">Posted on {{format_date createdAt}} at {{format_time createdAt}}</h6>
+                <div class="card-body bg-dark text-light">
+                  <p class="card-text">{{content}}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    {{/each}}
-  </div>
-
-
+      {{/each}}
     </div>
   </div>
+
   <div id="myModal" class="modal m2">
     <div class='modal-content'>
       <span class='close'>&times;</span>
       <p class=" align-self-center m-2">Enter your new bio</p>
       <textarea class=" align-self-center m-2 text-white" cols="50" id="user-bio">
       </textarea>
-      <button
-        type="button"
-        class="btn btn-sm align-self-center btn-secondary m-2"
-        id='save-button'
-      >
-        Save
-      </button>
+      <button type="button" class="btn btn-sm align-self-center btn-secondary m-2" id='save-button'>Save</button>
     </div>
   </div>
 </div>
