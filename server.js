@@ -3,9 +3,7 @@ const path = require("path");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const helpers = require("./utils/helpers");
-const nodemailer = require("nodemailer");
 const routes = require("./controllers");
-const Sequelize = require("sequelize");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
