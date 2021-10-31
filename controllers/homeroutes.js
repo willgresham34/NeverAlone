@@ -17,7 +17,6 @@ router.get("/", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  res.render("login");
 });
 
 // get sign up page -> if logged in, go to home page
@@ -48,6 +47,7 @@ router.get("/login", async (req, res) => {
 });
 
 // get profile page when logged in
+
 router.get("/profile", withAuth, async (req, res) => {
   try {
     const userData = await User.findOne({
@@ -81,7 +81,8 @@ router.get("/homepage", withAuth, async (req, res) => {
       randomQuote,
       loggedIn: req.session.loggedIn,
     });
-  } catch (err) {
+  } 
+  catch(err) {
     res.status(500).json(err);
   }
 });
