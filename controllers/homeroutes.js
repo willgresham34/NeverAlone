@@ -67,13 +67,22 @@ router.get("/profile", withAuth, async (req, res) => {
 
     res.render('profile', { userPosts, loggedIn: req.session.loggedIn });
   } 
-
-
-
   catch (err) {
     res.status(500).json(err);
   }
 });
+
+
+// Renders page to edit a post
+
+router.get("/profile/edit/", withAuth, async (req, res) => {
+  res.render("editPost");
+})
+
+
+
+
+
 
 // get home page when logged in
 
