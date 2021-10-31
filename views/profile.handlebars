@@ -13,9 +13,9 @@
       {{!-- Shows each posts on profile --}}
       <div class="col border border-dark rounded" style="height: 50em; overflow-y: scroll;">
         {{#each userPosts}}  
-          <form class="container-fluid mt-2 mb-2" action="profile/edit/" method="get">
+          <form class="container-fluid mt-2 mb-2" action="/profile/edit/{{id}}" method="get">
             <div class="row">
-              <button class="col-12 bg-dark">
+              <button class="col-12 bg-dark p-2">
                   <div class="card-header text-center bg-dark text-light">
                     <h6 class="card-text bg-dark">Posted on {{format_date createdAt}} at {{format_time createdAt}}</h6>
                   </div>   

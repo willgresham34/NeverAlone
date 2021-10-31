@@ -75,7 +75,7 @@ router.get("/profile", withAuth, async (req, res) => {
 
 // Renders page to edit a post
 
-router.get("/profile/edit/", withAuth, async (req, res) => {
+router.get("/profile/edit/:id", withAuth, async (req, res) => {
   res.render("editPost");
 })
 
