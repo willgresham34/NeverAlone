@@ -47,49 +47,39 @@ router.get("/login", async (req, res) => {
 });
 
 // get profile page when logged in
-router.get('/profile', withAuth, async (req,res) => {
 
+router.get("/profile", withAuth, async (req, res) => {
   try {
-    const postData = await Post.findAll({
+    const userData = await User.findOne({
       where: {
-        user_id: req.session.userId,
+        id: req.session.userId,
       },
-      include: [
-        {
-          model: User
-        }
-      ]
-    })
-
-    const userPosts = postData.map(post => post.get({ plain: true }));
-
-    console.log("Posts on Profile: ", userPosts);
-
-    res.render('profile', { userPosts, loggedIn: req.session.loggedIn });
-  } 
-  catch(err) {
-      res.status(500).json(err);
+    });
+    console.log('bio', userData.bio);
+    const dataUser = userData.get({plain: true});
+    res.render("profile", { loggedIn: req.session.loggedIn, dataUser });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
-
 // get home page when logged in
 
-router.get('/homepage', withAuth, async (req,res) => {
+router.get("/homepage", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [{ model: User }]
+      include: [{ model: User }],
     });
-  
+
     const posts = postData.map((post) => post.get({ plain: true }));
     let randomIndex = Math.floor(Math.random() * quoteList.length);
-    let randomQuote = quoteList[randomIndex]
-    console.log("Posts On Homepage: ", posts);
+    let randomQuote = quoteList[randomIndex];
+    console.log("Posts", posts);
 
-    res.render('homepage', {
+    res.render("homepage", {
       posts,
       randomQuote,
-      loggedIn: req.session.loggedIn
+      loggedIn: req.session.loggedIn,
     });
   } 
   catch(err) {
