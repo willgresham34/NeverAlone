@@ -20,7 +20,6 @@ router.get("/", async (req, res) => {
 });
 
 // get sign up page -> if logged in, go to home page
-
 router.get("/sign-up", async (req, res) => {
   try {
     if (req.session.loggedIn) {
@@ -33,7 +32,6 @@ router.get("/sign-up", async (req, res) => {
 });
 
 // get login page -> if logged in, go to home page
-
 router.get("/login", async (req, res) => {
   try {
     if (req.session.loggedIn) {
@@ -68,16 +66,18 @@ router.get("/profile", withAuth, async (req, res) => {
 router.get("/homepage", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [{ model: User }],
+      include: [{ model: User }, {model: Comments}],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
     let randomIndex = Math.floor(Math.random() * quoteList.length);
     let randomQuote = quoteList[randomIndex];
+    
     console.log("Posts", posts);
 
     res.render("homepage", {
       posts,
+      // comments,
       randomQuote,
       loggedIn: req.session.loggedIn,
     });
