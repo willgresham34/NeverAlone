@@ -1,17 +1,17 @@
 const nodemailer = require("nodemailer");
 
-require("dotenv").config();
-
 //Transporter set what email its coming from
 const transporter = nodemailer.createTransport({
   service: "hotmail",
   auth: {
     user: "never-alone-cares@outlook.com",
-    pass: process.env.NM_PASSWORD, //replace with a dotenv
+    pass: "Neveralone123", //replace with a dotenv
   },
 });
 
-const registerEmail = (emailUser) => {
+const registerEmail = () => {
+  const emailUser = document.querySelector("#userEmail");
+
   //options for mail
   const mail = {
     from: "never-alone-cares@outlook.com",
@@ -35,4 +35,7 @@ const registerEmail = (emailUser) => {
   });
 };
 
-module.exports = registerEmail;
+// registerEmail();
+document
+  .querySelector("#signup-form")
+  .addEventListener("submit", registerEmail);

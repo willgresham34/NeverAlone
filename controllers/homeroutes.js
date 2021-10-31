@@ -26,18 +26,6 @@ router.get("/sign-up", async (req, res) => {
       res.redirect("/homepage");
     }
     res.render("signup", { logged_in: req.session.loggedIn });
-    // const userEmail = await Post.findAll({
-    //   where: {
-    //     user_id: req.session.userId,
-    //   },
-    //   include: [
-    //     {
-    //       model: User.email,
-    //     },
-    //   ],
-    // });
-
-    console.log("Data:", userEmail);
   } catch (err) {
     res.status(500).json(err);
   }
