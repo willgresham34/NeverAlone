@@ -47,16 +47,29 @@ router.get("/login", async (req, res) => {
 // get profile page when logged in
 
 router.get("/profile", withAuth, async (req, res) => {
+
   try {
-    const userData = await User.findOne({
+    const postData = await Post.findAll({
       where: {
-        id: req.session.userId,
+        user_id: req.session.userId,
       },
-    });
-    console.log('bio', userData.bio);
-    const dataUser = userData.get({plain: true});
-    res.render("profile", { loggedIn: req.session.loggedIn, dataUser });
-  } catch (err) {
+      include: [
+        {
+          model: User
+        }
+      ]
+    })
+
+    const userPosts = postData.map(post => post.get({ plain: true }));
+
+    console.log("Posts on Profile: ", userPosts);
+
+    res.render('profile', { userPosts, loggedIn: req.session.loggedIn });
+  } 
+
+
+
+  catch (err) {
     res.status(500).json(err);
   }
 });

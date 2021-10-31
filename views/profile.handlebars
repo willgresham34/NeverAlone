@@ -7,11 +7,11 @@
         class="rounded-circle align-self-center mt-5 w-50 h-50"
       />
       <h3 class="align-self-center m-2 text-light">
-        {{dataUser.first_name}} {{dataUser.last_name}}
+        {{userPosts.[0].first_name}} {{userPosts.[0].last_name}}
       </h3>
-      <small class="align-self-center text-light"> @{{dataUser.username}} </small>
+      <small class="align-self-center text-light"> @{{userPosts.[0].User.username}} </small>
       <div class=" align-self-center m-2 text-light" cols="50" id="user-bio">
-        {{dataUser.bio}}
+        {{userPosts.[0].User.bio}}
       </div>
       <button
         type="button"
