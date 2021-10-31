@@ -62,7 +62,7 @@ router.get("/profile", withAuth, async (req, res) => {
 
     const userPosts = postData.map(post => post.get({ plain: true }));
 
-    console.log("Posts on Profile: ", userPosts);
+    console.log("Posts on Profile (userPosts): ", userPosts);
 
     res.render('profile', { userPosts, loggedIn: req.session.loggedIn });
   } 
