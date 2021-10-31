@@ -44,6 +44,7 @@ router.get("/login", async (req, res) => {
   }
 });
 
+
 // Gets user data to profile so data displays when user doesn't have any posts
 router.get('/profile', withAuth, async (req, res) => {
   try{
@@ -61,13 +62,13 @@ router.get('/profile', withAuth, async (req, res) => {
       },
       include: [
         {
-          model: User
-        }
+          model: User,
+        },
       ],
-      order: [['created_at', 'DESC']],
-    })
+      order: [["created_at", "DESC"]],
+    });
 
-    const userPosts = postData.map(post => post.get({ plain: true }));
+    const userPosts = postData.map((post) => post.get({ plain: true }));
 
     console.log("Posts on Profile (userPosts): ", userPosts);
 
@@ -116,19 +117,20 @@ router.get("/profile/edit/:id", withAuth, async (req, res) => {
 router.get("/homepage", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include:[ User,
-      {
-        model:Comments,
-        include: User,
-      },
-    ],
-    order: [['created_at', 'DESC']],
+      include: [
+        User,
+        {
+          model: Comments,
+          include: User,
+        },
+      ],
+      order: [["created_at", "DESC"]],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
     let randomIndex = Math.floor(Math.random() * quoteList.length);
     let randomQuote = quoteList[randomIndex];
-    
+
     console.log("Posts on Homepage: ", posts);
 
     res.render("homepage", {
@@ -137,8 +139,7 @@ router.get("/homepage", withAuth, async (req, res) => {
       randomQuote,
       loggedIn: req.session.loggedIn,
     });
-  } 
-  catch(err) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });
