@@ -55,6 +55,8 @@ MIT
 
 ## Deployed Link
 
+https://never-alone-platform.herokuapp.com/
+
 ## Contributors
 
 - Will Gresham - <a href="https://github.com/willgresham34">Gitub Profile</a>
