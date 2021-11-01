@@ -12,7 +12,8 @@ Comments.init(
   },
   {
     sequelize,
+    modelName: "Comments",
   }
 );
 
-module.exports = { Comments };
+module.exports = Comments;
