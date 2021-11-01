@@ -20,10 +20,17 @@ const signUpHandler = async (event) => {
   });
 
   if (response.ok) {
+    fetch(`api/user/email/${emailUser.value}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+    
     document.location.replace("/homepage");
   } else {
     alert("Sign up failed");
   }
+
+
 };
 
 document
