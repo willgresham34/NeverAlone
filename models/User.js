@@ -47,8 +47,8 @@ User.init(
       },
     },
     bio: {
-      type: DataTypes.STRING
-    }
+      type: DataTypes.STRING,
+    },
   },
   {
     hooks: {
@@ -64,4 +64,4 @@ User.init(
   }
 );
 
-module.exports = User;
+module.exports = { User };

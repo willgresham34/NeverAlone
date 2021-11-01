@@ -15,4 +15,4 @@ Comments.init(
   }
 );
 
-module.exports = Comments;
+module.exports = { Comments };
